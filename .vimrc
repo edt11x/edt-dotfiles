@@ -1,0 +1,197 @@
+" Run Pathogen
+execute pathogen#infect()
+execute pathogen#helptags()
+" We use a vim, we do not care about old functionality
+" prevents vim from emulating the original vi's bugs and limitations
+set nocompatible    " enabled when (g)vimrc is found
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'NLKNguyen/papercolor-theme'
+Plugin 'majutsushi/tagbar'
+Plugin 'bling/vim-airline'
+Plugin 'sjl/badwolf'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'dracula/vim'
+Plugin 'junegunn/vim-easy-align'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" " To ignore plugin indent changes, instead use:
+" "filetype plugin on
+" "
+" " Brief help
+" " :PluginList       - lists configured plugins
+" " :PluginInstall    - installs plugins; append `!` to update or just
+" :PluginUpdate
+" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" " :PluginClean      - confirms removal of unused plugins; append `!` to
+" auto-approve removal
+" "
+" " see :h vundle for more details or wiki for FAQ
+" " Put your non-Plugin stuff after this line
+
+if has("terminfo") 
+        set t_Co=16 
+	set t_AB=[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm 
+	set t_AF=[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm 
+else 
+	set t_Co=16 
+	set t_Sf=[3%dm 
+	set t_Sb=[4%dm 
+endif 
+
+set backspace=start,indent,eol  " make backspace work like 'normal' text editors
+
+set showmode    " show current mode (insert, visual, etc)
+
+set number relativenumber " show line numbers
+" set nonumber
+set numberwidth=6
+
+set showcmd " show the command being typed
+set ruler   " always show current position
+set wildmenu    " enhanced command-line completion
+set laststatus=2    " always show status line
+
+
+" set foldmethod=indent
+" Automatically detect file types so that auto commands will work
+filetype plugin indent on   " let vim detect filetype and load appropriate scripts
+" Highlight the searchs
+set hlsearch    " highlight search terms
+set incsearch   " show search matches as they are found
+
+" modeline - make sure we have modeline support
+set modeline
+set nolist
+set nowrapscan
+
+set ignorecase  " ignore case when searching
+set smartcase   " case sensitive only when capital letter in expression
+
+" Automatically indent based on the file type rules
+set autoindent  " copy current indent level when starting new line
+set smartindent " indent after braces, keywords, etc
+set smarttab
+
+" Use the strongest built in encryption that we can
+setlocal cm=blowfish2
+
+" Tab settings
+" In general shiftwidth and softtabstop should be the same value
+" Tabs are 8 spaces, do not use tabs -- Mike Potts
+set expandtab   " use spaces instead of tab characters
+set tabstop=8   " width of a tab character in spaces
+set softtabstop=4   " defines number of spaces for when adding/remving tabs
+set shiftwidth=4    " number of spaces to use for autoindent
+
+set showmatch   " show matching braces when text indicator is over them
+
+syntax on
+syntax enable   " enable syntax highlighting
+
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1 
+
+if has("gui")
+    if has("gui_macvim")
+        "colorscheme liquidcarbon
+        "colorscheme desert
+        set guifont=MonteCarlo
+        set background=dark
+        " colorscheme PaperColor
+        colorscheme badwolf
+    else
+        " colorscheme desertink
+        " colorscheme jellybeans
+        " colorscheme desert
+        " colorscheme solarized
+        " colorscheme koehler
+        " colorscheme PaperColor
+        colorscheme badwolf
+        " set gfn=-schumacher-clean-medium-r-normal-*-*-130-*-*-c-*-iso646.1991-irv
+        " set gfn=-adobe-courier-medium-r-normal-*-*-120-*-*-m-*-iso10646-1
+        " set gfn=-dec-terminal-medium-r-normal-*-*-140-*-*-c-*-iso8859-1
+        set gfn="Courier 10 Pitch 10"
+        set guifont=MonteCarlo
+        " let &colorcolumn=join(range(81,999),",")
+        highlight ColorColumn guibg=#1c1d17
+    endif
+else
+    colorscheme osx_like
+    " let &colorcolumn=join(range(81,999),",")
+    highlight ColorColumn ctermbg=7
+endif
+
+" colorscheme vividchalk
+" colorscheme xterm16
+" colorscheme liquidcarbon
+" colorscheme zenburn
+" colorscheme darkblue
+" colorscheme ir_black
+
+" set gfn=-schumacher-clean-medium-r-normal-*-*-130-*-*-c-*-iso646.1991-irv
+" set gfn=-adobe-courier-medium-r-normal-*-*-120-*-*-m-*-iso10646-1
+" set gfn=-dec-terminal-medium-r-normal-*-*-140-*-*-c-*-iso8859-1
+" set gfn="Courier 14 Pitch 10"
+" set guifont=consolas:h16
+set gfn=Menlo:h14"
+set guifont=Menlo:h14"
+"
+" Colo(u)red or not colo(u)red
+" If you want color you should set this to true
+"
+let color = "true"
+"
+" let &colorcolumn=join(range(81,999),",")
+highlight ColorColumn ctermbg=235 guibg=#2c2d27
+
+"au BufRead,BufNewFile *.log set filetype=ess
+" au Syntax ess source $VIM/../../Data/settings/esslog.vim
+" au Syntax ess source /Users/edt/.vim/syntax/ess.vim
+
+"
+" Stuff for this project
+" set makeef=/tmp/err.out
+" set makeprg=/tmphome/edt/dev/rosetta/c3/doit
+"
+set efm=\|\|\ \"%f\"\,\ line\ %l:\ warning\ %m,\|\|\ \"%f\"\,\ line\ %l:\ error\ %m
+let errorSearch = '\c\(\<error\|fail\w*\|fatal\|flagged\|abort\|\(de\)\@<!faults*\|not specified\|not found\|not ok\|has not\|were not\|problem\|\<unknown\|disabled\|\<loss\>\|not active\|undervoltage\|overcurrent\|unusually\|threshold\|\<inactive\|\<bad\>\|time out\|is not\|not valid\|not allowed\|warning\|possible occurrence\|never\|incompatible\|might not\|without\|\<detected\|could not\|\<invalid\|already\|skippped\|\w*declared\|mismatch\|address miss\|more data\|\<timeout\|repeated\|damaged\|\<err\>\|fell below\|fifo full\|exceeds\|was not\|uncommanded\|doesn.t exist\|cannot\|4294967295\|error\s*limit\|does not\|anomalies\|no identifier\|unsuitable\|banned\|no default\|too far\|negated\|side effect\w*\|inconsistent\|insufficient\|divide by zero\|nested\|incomplete\|violation\w*\|reused\|null statement\|infeasible\|not protected\|conflict\|trigraphs\|spurious\|wrong\|\<no bracket\w*\|setjmp\|longjmp\|comparison of float\w*\|more than one\|empty switch\|reserved word\|non standard\|not unique\|reused\|no such\|ERROR\|missing\)'
+let essSearch = '\C\(pppp\)\@!\(\S*f\s\|\S*f$\|\S*f\r\|fail\>\|failed\|FAIL\|fault\|error\S*\|Error\S*\|\<err\>\|repeated\|damaged\|already\|mismatch\|disabled\|Disabled\|Loss\|Under\|bad packet\|Bad Packet\|time out\|\<timeout\|invalid\|skippped\|power cycle\|exceeds\|RS-422 Errors\|Framing\|Parity\|Time Out\|Uncommanded\|unusually\|4294967295|\<[pf][pf][pf][pf]\>\)'
+let mushySearch = '\c\(could\|might\|tbd\|\<too\>\)'
+let faultReformat = 's/\(\s*\S\+\),\s*\(\S\+\)U, \(\S\+\)U, \(".*"\), 0U, \(\S\+U\), 0LL, \(\S\+\) },/\1 => { word => \2 , bit => \3, msg => \4, threshold => "\5", maxrate => "\6" } ,/'
+let essFail = '\<FAIL \*$'
+let fooSearch = '^\d\+\s\+([01]\+_[01]\{4})\s\S\+[^A-Z]\+'
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
+let g:notes_directories = ['/Users/edt/Documents/Notes']
+
+let g:LookOfDisapprovalTabThreshold=5
+let g:LookOfDisapprovalSpaceThreshold=(&tabstop*5)
+
+" NERDTree setting defaults to work around
+" http://github.com/scrooloose/nerdtree/issues/489
+" let g:NERDTreeDirArrows = 1
+" let g:NERDTreeDirArrowExpandable = '?'
+" let g:NERDTreeDirArrowCollapsible = '?'
+" let g:NERDTreeGlyphReadOnly = "RO"
+
+command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
+
+" ~/.vimrc ends here
