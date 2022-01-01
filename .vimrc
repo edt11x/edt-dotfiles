@@ -8,25 +8,17 @@ set nocompatible    " enabled when (g)vimrc is found
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
+call plug#begin()
+Plug 'scrooloose/nerdtree'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'majutsushi/tagbar'
+Plug 'bling/vim-airline'
+Plug 'sjl/badwolf'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'dracula/vim'
+Plug 'junegunn/vim-easy-align'
+call plug#end()            " required
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'NLKNguyen/papercolor-theme'
-Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-airline'
-Plugin 'sjl/badwolf'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'dracula/vim'
-Plugin 'junegunn/vim-easy-align'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
 filetype plugin indent on    " required
 " " To ignore plugin indent changes, instead use:
 " "filetype plugin on
@@ -151,6 +143,7 @@ endif
 " set guifont=consolas:h16
 set gfn=Menlo:h14"
 set guifont=Menlo:h14"
+set guifont="DejaVu Sans Mono 10"
 "
 " Colo(u)red or not colo(u)red
 " If you want color you should set this to true
@@ -180,7 +173,7 @@ let fooSearch = '^\d\+\s\+([01]\+_[01]\{4})\s\S\+[^A-Z]\+'
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-let g:notes_directories = ['/Users/edt/Documents/Notes']
+let g:notes_directories = ['/home/user/Documents/Notes']
 
 let g:LookOfDisapprovalTabThreshold=5
 let g:LookOfDisapprovalSpaceThreshold=(&tabstop*5)
